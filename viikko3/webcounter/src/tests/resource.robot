@@ -16,7 +16,5 @@ Open And Configure Browser
     ELSE IF    $BROWSER == 'firefox'
         ${options}  Evaluate  sys.modules['selenium.webdriver'].FirefoxOptions()  sys
     END
-    # seuraava rivi on kommentoitu toistaiseksi pois
-    Call Method  ${options}  add_argument  --headless
     Open Browser  browser=${BROWSER}  options=${options}
     Set Selenium Speed  ${DELAY}
