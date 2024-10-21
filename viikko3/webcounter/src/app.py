@@ -9,6 +9,6 @@ def index():
     return render_template("index.html", value=cnt.value)
 
 @app.route("/increment", methods=["POST"])
-def send():
+def increment():
     cnt.increase()
     return redirect("/")
