@@ -1,10 +1,12 @@
 *** Settings ***
 Library  SeleniumLibrary
 
-*** Variables ***   
+*** Variables ***
+${SERVER}    localhost:5001
 ${DELAY}     0.5 seconds
-${HOME_URL}  http://localhost:5001
+${HOME_URL}  http://${SERVER}
 ${BROWSER}   chrome
+${HEADLESS}  false
 
 *** Keywords ***
 Open And Configure Browser
@@ -13,6 +15,11 @@ Open And Configure Browser
     ELSE IF    $BROWSER == 'firefox'
         ${options}  Evaluate  sys.modules['selenium.webdriver'].FirefoxOptions()  sys
     END
-    Set Selenium Speed  ${DELAY}
+    IF  $HEADLESS == 'true'
+        Set Selenium Speed  0
+        Call Method  ${options}  add_argument  --headless
+    ELSE IF  $BROWSER == 'false'
+        Set Selenium Speed  ${DELAY}
+    END
     Open Browser  browser=${BROWSER}  options=${options}
-    
+   
