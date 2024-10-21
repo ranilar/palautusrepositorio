@@ -1,13 +1,10 @@
 *** Settings ***
 Library  SeleniumLibrary
 
-*** Variables ***
-${SERVER}    localhost:5001
+*** Variables ***   
 ${DELAY}     0.5 seconds
-${HOME_URL}  http://${SERVER}
+${HOME_URL}  http://localhost:5001
 ${BROWSER}   chrome
-# ${BROWSER} firefox
-# robot --variable BROWSER:firefox src/tests 
 
 *** Keywords ***
 Open And Configure Browser
